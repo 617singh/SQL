@@ -1,0 +1,34 @@
+--Create a gym store database
+
+create table gym_store(id integer primary key, equipment text, quantity integer, price integer, shipment text);
+
+insert into gym_store values(1, "Treadmills", 30, 989, "Ships in 5 days");
+insert into gym_store values(2, "Ellipticals", 40, 649, "Ships in 3 days");
+insert into gym_store values(3, "Bikes", 55, 499, "Ships in 3 days");
+insert into gym_store values(4, "Rowers", 45, 599, "Ships in 5 days");
+insert into gym_store values(5, "Stairclimbers", 20, 2000, "Ships in 5 days");
+insert into gym_store values(6, "Benches", 100, 389, "Ships in 3 days");
+insert into gym_store values(7, "Kettlebells_sets", 35, 599, "Ships in 5 days");
+insert into gym_store values(8, "Dumbbells_sets", 80, 489, "Ships in 5 days");
+insert into gym_store values(9, "Squat_stands", 90, 249, "Ships in 3 days");
+insert into gym_store values(10, "Jump_ropes", 300, 25, "Ships in 3 days");
+insert into gym_store values(11, "Weight_sets", 160, 299, "Ships in 3 days");
+insert into gym_store values(12, "Barbells", 170, 300, "Ships in 5 days");
+insert into gym_store values(13, "Ab_wheels", 99, 20, "Ships in 3 days");
+insert into gym_store values(14, "Resistance_bands", 125, 15, "Ships in 5 days");
+insert into gym_store values(15, "Mats", 210, 9, "Ships in 3 days");
+
+
+create table discount_amount(equipment text primary key, discount_amount integer);
+insert into discount_amount values("Treadmills", 50);
+insert into discount_amount values("Ellipticals", 50);
+insert into discount_amount values("Bikes", 25);
+insert into discount_amount values("Rowers", 75);
+insert into discount_amount values("Stairclimbers", 100);
+
+--display the database ordered by price.
+SELECT * FROM gym_store
+ORDER BY price desc;
+
+SELECT * FROM discount_amount;
+SELECT SUM(quantity) AS quantity FROM gym_store;
