@@ -1,34 +1,35 @@
---Create a gym store database
 
-create table gym_store(id integer primary key, equipment text, quantity integer, price integer, shipment text);
+--Create a grocery store database
 
-insert into gym_store values(1, "Treadmills", 30, 989, "Ships in 5 days");
-insert into gym_store values(2, "Ellipticals", 40, 649, "Ships in 3 days");
-insert into gym_store values(3, "Bikes", 55, 499, "Ships in 3 days");
-insert into gym_store values(4, "Rowers", 45, 599, "Ships in 5 days");
-insert into gym_store values(5, "Stairclimbers", 20, 2000, "Ships in 5 days");
-insert into gym_store values(6, "Benches", 100, 389, "Ships in 3 days");
-insert into gym_store values(7, "Kettlebells_sets", 35, 599, "Ships in 5 days");
-insert into gym_store values(8, "Dumbbells_sets", 80, 489, "Ships in 5 days");
-insert into gym_store values(9, "Squat_stands", 90, 249, "Ships in 3 days");
-insert into gym_store values(10, "Jump_ropes", 300, 25, "Ships in 3 days");
-insert into gym_store values(11, "Weight_sets", 160, 299, "Ships in 3 days");
-insert into gym_store values(12, "Barbells", 170, 300, "Ships in 5 days");
-insert into gym_store values(13, "Ab_wheels", 99, 20, "Ships in 3 days");
-insert into gym_store values(14, "Resistance_bands", 125, 15, "Ships in 5 days");
-insert into gym_store values(15, "Mats", 210, 9, "Ships in 3 days");
+CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, section TEXT, price INTEGER, popularity INTEGER);
 
+INSERT INTO store VALUES (1, "papaya", "produce", 2.99, 50);
+INSERT INTO store VALUES (2, "banana", "produce", 0.99, 95);
+INSERT INTO store VALUES (3, "qtips", "hygiene", 2.99, 55);
+INSERT INTO store VALUES (4, "beans", "bulk", 0.99, 50);
+INSERT INTO store VALUES (5, "beyond burgers", "meat", 4.99, 65);
+INSERT INTO store VALUES (6, "salsa", "fresh", 3.25, 43);
+INSERT INTO store VALUES (7, "hummus", "fresh", 2.99, 35);
+INSERT INTO store VALUES (8, "papaya", "hygiene", 2.99, 50);
+INSERT INTO store VALUES (9, "chick'n nuggs", "meat", 4.99, 75);
+INSERT INTO store VALUES (10, "peas", "frozen", 0.99, 25);
+INSERT INTO store VALUES (11, "smoothie berries", "frozen", 2.99, 33);
+INSERT INTO store VALUES (12, "granola", "bulk", 1.99, 80);
+INSERT INTO store VALUES (13, "vitamin D", "health", 8.99,29);
+INSERT INTO store VALUES (14, "nutritional yeast", "health", 2.99, 26);
+INSERT INTO store VALUES (15, "popcorn", "snacks", 1.99, 47);
 
-create table discount_amount(equipment text primary key, discount_amount integer);
-insert into discount_amount values("Treadmills", 50);
-insert into discount_amount values("Ellipticals", 50);
-insert into discount_amount values("Bikes", 25);
-insert into discount_amount values("Rowers", 75);
-insert into discount_amount values("Stairclimbers", 100);
+--display the database ordered by price. 
+SELECT * FROM store
+ORDER BY price desc; 
 
---display the database ordered by price.
-SELECT * FROM gym_store
-ORDER BY price desc;
+--what is the avg price of items in the bulk section? 
+SELECT AVG(price) "avg bulk item price"
+FROM store
+where section='bulk'; 
 
-SELECT * FROM discount_amount;
-SELECT SUM(quantity) AS quantity FROM gym_store;
+--what are the most 5 popular items? 
+SELECT item, price, popularity
+FROM store
+order by popularity desc
+limit 5; 
